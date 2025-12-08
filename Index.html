@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantoja Tile & Remodeling | Expertos Certificados en El Paso, TX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables y Reset */
+        :root {
+            --color-primary: #0c8c42; /* Verde de acento */
+            --color-dark: #1a1a1a;
+            --color-light: #f9f9f9;
+        }
+
+        body { font-family: 'Poppins', Arial, sans-serif; margin: 0; color: #333; background: var(--color-light); line-height: 1.6; }
+        
+        /* Navegación (Añadida para profesionalidad) */
+        nav { background: var(--color-dark); padding: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        nav .container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        nav a.logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li a { color: white; text-decoration: none; padding: 10px 15px; display: block; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--color-primary); }
+        
+        /* Header (Sección Hero) */
+        header { 
+            background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('https://via.placeholder.com/1400x600/333333/FFFFFF?text=FOTO+TILE+REMODELACION') no-repeat center center;
+            background-size: cover;
+            color: #fff; 
+            padding: 120px 20px; 
+            text-align: center; 
+        }
+        header h1 { font-size: 3.5rem; margin: 0 0 10px 0; font-weight: 700; }
+        header p { font-size: 1.5rem; opacity: .9; margin-bottom: 30px; }
+        
+        /* Botones */
+        .btn { 
+            background: var(--color-primary); 
+            color: #fff; 
+            padding: 14px 30px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            display: inline-block; 
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover{ background: #086b31; transform: translateY(-2px); }
+        
+        /* Secciones Generales */
+        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        section:nth-child(even) { background-color: var(--color-light); }
+        h2 { font-size: 2.5rem; margin-bottom: 35px; color: var(--color-dark); text-align: center; font-weight: 700; }
+        
+        /* Estilos de Servicios */
+        .services-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .services-list li { margin-bottom: 10px; font-size: 1.1rem; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        
+        /* Galería */
+        .gallery { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+        .gallery img { 
+            width: 100%; max-width: 350px; 
+            height: 250px; object-fit: cover; /* Para que las imágenes se vean uniformes */
+            border-radius: 12px; 
+            box-shadow:0 6px 15px rgba(0,0,0,.2); 
+            transition: transform 0.3s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+
+        /* Por Qué Elegirnos */
+        .why-choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .why-choose div h3 { color: var(--color-primary); font-weight: 600; margin-top: 15px; }
+
+        /* Footer */
+        footer { background: var(--color-dark); color: white; text-align: center; padding: 40px; margin-top: 0; }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:16px 20px; border-radius:50px; font-size:1.2rem; text-decoration:none; box-shadow:0 4px 12px rgba(0,0,0,.3); z-index: 100; font-weight: 600; }
+
+        /* Estilos del Formulario */
+        form { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        form label { display: block; margin-bottom: 15px; font-weight: 600; }
+        form input, form select, form textarea { border-radius:8px; border:1px solid #ddd; width:100%; padding:12px; margin-top:5px; box-sizing: border-box; }
+
+        /* Testimonios (Nuevo) */
+        .testimonial-card { background: white; padding: 25px; border-left: 5px solid var(--color-primary); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .testimonial-card p { font-style: italic; }
+        .testimonial-card footer { background: none; color: #333; padding: 10px 0 0 0; text-align: right; font-weight: 600; }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            header { padding: 80px 20px; }
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.2rem; }
+            h2 { font-size: 2rem; }
+            nav ul { display: none; } /* O usar un menú hamburguesa real si se requiere */
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo">Pantoja Tile & Remodeling</a>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#galeria">Proyectos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header id="inicio">
+    <h1>Transforma tu Hogar en El Paso, TX</h1>
+    <p>Más de 10 años creando espacios de lujo con acabados de azulejos, baños y cocinas de calidad superior.</p>
+    <a href="#formulario" class="btn">Solicitar Cotización Gratis</a>
+</header>
+
+---
+
+<section>
+    <h2>¿Por Qué Pantoja Tile & Remodeling?</h2>
+    <div class="why-choose">
+        <div>
+            <img src="https://via.placeholder.com/80/0c8c42/FFFFFF?text=⭐" alt="Icono de Calidad" style="max-width: 80px;">
+            <h3>Calidad Garantizada</h3>
+            <p>Usamos solo materiales premium y técnicas de instalación que aseguran la durabilidad de tu proyecto.</p>
+        </div>
+        <div>
+            <img src="https://via.placeholder.com/80/0c8c42/FFFFFF?text=⏱" alt="Icono de Eficiencia" style="max-width: 80px;">
+            <h3>Entrega a Tiempo</h3>
+            <p>Cumplimos con los plazos acordados. Tu remodelación, lista cuando la necesitas.</p>
+        </div>
+        <div>
+            <img src="https://via.placeholder.com/80/0c8c42/FFFFFF?text=$" alt="Icono de Financiamiento" style="max-width: 80px;">
+            <h3>Financiamiento Flexible</h3>
+            <p>Planes de pago accesibles que facilitan tu proyecto de remodelación.</p>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="servicios">
+    <h2>Nuestros Servicios Premium</h2>
+    <ul class="services-list">
+        <li>🔹 Instalación profesional de **Tile 24x48** y formatos grandes.</li>
+        <li>🔹 Remodelación completa de **Cocinas Modernas** (backsplash, encimeras, gabinetes).</li>
+        <li>🔹 Transformación de **Baños estilo Spa** (duchas, tinas, pisos).</li>
+        <li>🔹 Chimeneas decorativas y muros de acento.</li>
+        <li>🔹 **Patios y Exteriores** estilo desértico con acabados resistentes.</li>
+        <li>🔹 Servicios integrales de Pintura y reparaciones.</li>
+    </ul>
+</section>
+
+---
+
+<section id="galeria">
+    <h2>Proyectos Antes y Después – Estilo El Paso</h2>
+    <p style="text-align: center; margin-bottom: 40px;">Transformaciones que hablan por sí solas. ¡Visualiza tu nuevo espacio!</p>
+    <div class="gallery">
+        <img src="https://via.placeholder.com/350x250?text=Cocina+Antes" alt="Cocina Antes" />
+        <img src="https://via.placeholder.com/350x250?text=Cocina+Despues" alt="Cocina Despues" />
+        <img src="https://via.placeholder.com/350x250?text=Bano+Antes" alt="Baño Antes" />
+        <img src="https://via.placeholder.com/350x250?text=Bano+Despues" alt="Baño Despues" />
+        <img src="https://via.placeholder.com/350x250?text=Patio+Antes" alt="Patio Antes" />
+        <img src="https://via.placeholder.com/350x250?text=Patio+Despues" alt="Patio Despues" />
+    </div>
+</section>
+
+---
+
+<section style="background-color: #f0f0f0;">
+    <h2>Lo Que Dicen Nuestros Clientes</h2>
+    <div style="max-width: 800px; margin: auto;">
+        <div class="testimonial-card">
+            <p>"El equipo de Pantoja superó mis expectativas. Mi baño es ahora una obra de arte. La atención al detalle es increíble."</p>
+            <footer>— María L., El Paso</footer>
+        </div>
+        <div class="testimonial-card">
+            <p>"Rápidos, limpios y profesionales. Pudimos financiar la cocina sin problemas. ¡Altamente recomendados!"</p>
+            <footer>— David R., Horizon City</footer>
+        </div>
+    </div>
+</section>
+
+---
+
+<section>
+    <h2>Opciones de Financiamiento Accesible</h2>
+    <p style="text-align: center; margin-bottom: 30px;">No pospongas tu proyecto. Ofrecemos soluciones de financiamiento sencillas y rápidas.</p>
+    <ul style="list-style: none; padding: 0; text-align: center;">
+        <li style="font-size:1.2rem; margin-bottom: 15px;">✅ Planes accesibles para remodelar **sin pago inicial**.</li>
+        <li style="font-size:1.2rem; margin-bottom: 15px;">✅ Aprobación **en minutos** para que comiences pronto.</li>
+        <li style="font-size:1.2rem; margin-bottom: 15px;">✅ Pre-calificación **sin impacto** en tu historial crediticio.</li>
+    </ul>
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="#formulario" class="btn">Pre-Calificar Ahora</a>
+    </div>
+</section>
+
+---
+
+<section id="formulario">
+    <h2>Solicita tu Cotización Gratis y Agenda una Consulta</h2>
+    <form action="https://formspree.io/f/xovgnnlb" method="POST">
+        <label>Nombre Completo:<br><input name="nombre" type="text" required></label>
+        <label>Dirección del Proyecto (Ciudad/Código Postal):<br><input name="direccion" type="text" required></label>
+        <label>Teléfono Principal:<br><input name="telefono" type="tel" required></label>
+        <label>Tipo de Proyecto:<br>
+          <select name="proyecto">
+            <option>Instalación de Tile</option>
+            <option>Remodelación de Baño</option>
+            <option>Remodelación de Cocina</option>
+            <option>Proyecto Exterior/Patio</option>
+            <option>Varios / Otros</option>
+          </select>
+        </label>
+        <label>Detalles del Proyecto / Mensaje:<br><textarea name="mensaje" rows="5"></textarea></label><br>
+        <button class="btn" type="submit">Enviar Solicitud</button>
+    </form>
+</section>
+
+<footer>
+    <p>Llámanos: (915) 309-5581 | info@pantojatile.com</p>
+    <p>© 2025 Pantoja Tile & Remodeling – Remodelaciones Premium en El Paso, TX</p>
+</footer>
+
+<a class="whatsapp-btn" href="https://wa.me/19153095581?text=Hola,%20me%20interesa%20una%20cotizaci%C3%B3n%20para%20remodelaci%C3%B3n.%20Vengo%20de%20su%20p%C3%A1gina%20web." target="_blank">💬 WhatsApp</a>
+
+</body>
+</html>
