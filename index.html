@@ -52,9 +52,27 @@
         }
         .nav-links a:hover { color: var(--green); }
         
-        /* Ocultar en escritorio */
-        .menu-icon, .menu-toggle { display: none; }
+        /* Ocultar elementos de menú no funcionales en escritorio */
+        .menu-toggle { display: none; }
+        .menu-icon { display: none; } 
 
+        /* ESTILOS PARA EL MENÚ DE HAMBURGUESA EN MÓVIL */
+        .menu-toggle:checked ~ .nav-links {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 68px;
+            right: 0;
+            background: var(--dark);
+            width: 100%;
+            padding: 10px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            z-index: 29;
+        }
+        .menu-toggle:checked ~ .nav-links a {
+            padding: 12px 20px;
+            border-bottom: 1px solid #333;
+        }
 
         /* ====================================
            3. HERO (ENCABEZADO GRANDE)
@@ -70,17 +88,18 @@
         }
         .hero .content { position: relative; z-index: 2; color: white; }
         
-        /* Estilo para el contenedor del logo grande (Simulando la geometría de fondo) */
+        /* ESTILOS MEJORADOS PARA INTEGRACIÓN DEL LOGO */
         .hero .logo-lg {
-            /* Simula el tamaño y la posición del logo/patrón central */
             height: 300px; 
             width: 300px;
             margin: 0 auto 30px;
-            background: rgba(12,140,66,0.1); /* Fondo sutilmente verde/oscuro */
-            border: 2px solid var(--gold-accent); /* Borde de acento */
-            border-radius: 50%; /* Circular para simular el borde de la imagen */
+            background: rgba(12, 140, 66, 0.05); /* Fondo verde muy sutil */
+            /* Borde más suave para mejor integración visual */
+            border: 1px solid rgba(184, 134, 11, 0.1); 
+            border-radius: 50%;
             display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            /* Sombra más amplia y suave para el efecto de "flotación" */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
             position: relative;
         }
         /* El logo PNG dentro del contenedor */
@@ -88,7 +107,7 @@
             height: 80%;
             width: 80%;
             object-fit: contain;
-            /* Le da un ligero realce 3D/sombra */
+            /* Filtro de sombra para realce 3D/brillo */
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(12, 140, 66, 0.3)); 
         }
 
@@ -109,7 +128,8 @@
            4. SECCIONES DE CONTENIDO (CARDS)
            ==================================== */
         .main { max-width: 1200px; margin: 0 auto; padding: 30px 20px 120px; }
-        .section-title { color: var(--text-light); margin: 0 0 10px 0; font-weight: 600; text-align: left; font-size: 1.2rem; }
+        /* Títulos de sección centralizados */
+        .section-title { margin: 0 0 25px 0; font-weight: 700; font-size: 1.8rem; text-align: center;} 
         
         /* Layout de 3 columnas para la sección de Servicios/Testimonios */
         .cards { 
@@ -132,7 +152,7 @@
             background: var(--green); color: white; 
             display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; 
-            padding: 40px 25px; /* Más padding para que se destaque */
+            padding: 40px 25px;
         }
         .center-card h3, .center-card p { color: white; }
         .center-card .btn { 
@@ -211,7 +231,6 @@
             }
             .topbar .wrap { 
                 padding: 0 15px; 
-                /* Asegura que haya espacio para el logo y el ícono */
                 justify-content: space-between; 
             }
             
