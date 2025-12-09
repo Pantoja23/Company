@@ -1,131 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pantoja Tile & Remodeling - App</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantoja Tile & Remodeling</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables y Reset */
+        :root {
+            --color-primary: #0c8c42;
+            --color-dark: #1a1a1a;
+            --color-light: #f9f9f9;
+        }
 
-<style>
-:root {
-    --color-primary: #0c8c42;
-    --color-dark: #1a1a1a;
-    --color-light: #f9f9f9;
-}
-body { font-family:'Poppins',Arial,sans-serif; margin:0; padding:0; color:#111; background:#ffffff; line-height:1.6; }
+        body { font-family: 'Poppins', Arial, sans-serif; margin: 0; padding: 0; color: #333; background: var(--color-light); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Navegación */
+        nav { background: var(--color-dark); padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        nav .container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        nav a.logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li a { color: white; text-decoration: none; padding: 10px 15px; display: block; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--color-primary); }
+        
+        /* Header */
+        header { 
+            background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('https://images.unsplash.com/photo-1484154218962-a1c00207099b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80') no-repeat center center;
+            background-size: cover;
+            color: #fff; 
+            padding: 120px 20px; 
+            text-align: center; 
+        }
+        header h1 { font-size: 3.5rem; margin: 0 0 10px 0; font-weight: 700; }
+        header p { font-size: 1.5rem; opacity: .9; margin-bottom: 30px; }
+        
+        /* Botones */
+        .btn { 
+            background: var(--color-primary); 
+            color: #fff; 
+            padding: 14px 30px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            display: inline-block; 
+            transition: background 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover{ background: #086b31; transform: translateY(-2px); }
+        
+        /* Secciones */
+        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        section:nth-child(even) { background-color: var(--color-light); }
+        h2 { font-size: 2.5rem; margin-bottom: 35px; color: var(--color-dark); text-align: center; font-weight: 700; }
+        
+        /* Servicios */
+        .services-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .services-list li { font-size: 1.1rem; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        
+        /* Galería */
+        .gallery { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+        .gallery img { 
+            width: 100%; max-width: 350px; 
+            height: 250px; object-fit: cover; 
+            border-radius: 12px; 
+            box-shadow:0 6px 15px rgba(0,0,0,.2); 
+            transition: transform 0.3s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
 
-/* App-style layout */
-.app-container { display:flex; flex-direction:column; min-height:100vh; }
-header, section, footer { width:100%; }
-nav { background: var(--color-dark); padding:10px; display:flex; justify-content:space-between; align-items:center; position:fixed; top:0; width:100%; z-index:1000; }
-nav a.logo { color:white; font-size:1.5rem; font-weight:700; text-decoration:none; }
-nav ul { list-style:none; display:flex; margin:0; padding:0; }
-nav ul li a { color:white; padding:10px 15px; text-decoration:none; font-weight:600; }
-nav ul li a:hover { color:var(--color-primary); }
+        /* Por Qué Elegirnos */
+        .why-choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .why-choose div h3 { color: var(--color-primary); font-weight: 600; margin-top: 15px; }
 
-/* Header con imagen de fondo responsive */
-header { margin-top:60px; background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...'); background-size:cover; background-position:center; height:50vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px; padding:0 15px; }
-header h1 { font-size:2.5rem; margin-bottom:10px; }
-header p { font-size:1.2rem; opacity:0.9; }
+        /* Footer */
+        footer { background: var(--color-dark); color: white; text-align: center; padding: 40px; margin-top: 0; }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:16px 20px; border-radius:50px; font-size:1.2rem; text-decoration:none; box-shadow:0 4px 12px rgba(0,0,0,.3); z-index: 100; font-weight: 600; }
 
-.btn { background:var(--color-primary); color:white; padding:12px 25px; border-radius:25px; text-decoration:none; font-weight:600; margin-top:10px; display:inline-block; transition:0.3s; }
-.btn:hover { background:#086b31; }
+        /* Formulario */
+        form { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        form label { display: block; margin-bottom: 15px; font-weight: 600; }
+        form input, form select, form textarea { border-radius:8px; border:1px solid #ddd; width:100%; padding:12px; margin-top:5px; box-sizing: border-box; }
 
-section { padding:20px; margin:15px; background:white; border-radius:20px; box-shadow:0 3px 10px rgba(0,0,0,0.1); }
-h2 { text-align:center; color:var(--color-dark); margin-bottom:20px; font-size:1.8rem; }
+        /* Testimonios */
+        .testimonial-card { background: white; padding: 25px; border-left: 5px solid var(--color-primary); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .testimonial-card p { font-style: italic; }
+        .testimonial-card footer { background: none; color: #333; padding: 10px 0 0 0; text-align: right; font-weight: 600; }
 
-.services-list { list-style:none; padding:0; display:grid; grid-template-columns:1fr; gap:15px; }
-.services-list li { background:#f7f7f7; padding:15px; border-radius:15px; font-size:1rem; }
-
-.gallery { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
-.gallery img { width:100%; max-width:100%; border-radius:12px; }
-
-.why-choose { display:flex; flex-direction:column; gap:15px; text-align:center; }
-.why-choose div { padding:10px; border-radius:15px; background:#f5f5f5; }
-.why-choose div h3 { color:var(--color-primary); margin-bottom:5px; }
-
-form { display:flex; flex-direction:column; gap:10px; }
-form input, form select, form textarea { padding:10px; border-radius:10px; border:1px solid #ccc; width:100%; box-sizing:border-box; }
-form button { background:var(--color-primary); color:white; padding:12px; border:none; border-radius:25px; font-weight:600; cursor:pointer; }
-form button:hover { background:#086b31; }
-
-footer { text-align:center; padding:15px; background:var(--color-dark); color:white; margin-top:auto; border-top-left-radius:20px; border-top-right-radius:20px; }
-
-.whatsapp-btn { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px 18px; border-radius:50px; font-weight:600; text-decoration:none; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
-
-@media(max-width:768px){ nav ul { display:none; } header h1 { font-size:1.8rem; } header p { font-size:1rem; } .services-list { grid-template-columns:1fr; } }
-</style>
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.2rem; }
+            h2 { font-size: 2rem; }
+            nav ul { display: none; } /* Menú simplificado para móvil */
+        }
+    </style>
 </head>
 <body>
-<div class="app-container">
+
 <nav>
-<a href="#" class="logo">Pantoja Tile</a>
-<ul>
-<li><a href="#inicio">Inicio</a></li>
-<li><a href="#servicios">Servicios</a></li>
-<li><a href="#galeria">Proyectos</a></li>
-<li><a href="#contacto">Contacto</a></li>
-</ul>
+    <div class="container">
+        <a href="#" class="logo">Pantoja Tile & Remodeling</a>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#galeria">Proyectos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
 </nav>
 
 <header id="inicio">
-<h1>Transforma tu Hogar en El Paso, TX</h1>
-<p>Más de 10 años creando espacios de lujo con acabados de azulejos y remodelaciones de calidad.</p>
-<a href="#contacto" class="btn">Cotización Gratis</a>
+    <h1>Transforma tu Hogar en El Paso, TX</h1>
+    <p>Más de 10 años creando espacios de lujo con acabados de azulejos, baños y cocinas de calidad superior.</p>
+    <a href="#contacto" class="btn">Solicitar Cotización Gratis</a>
 </header>
 
 <section>
-<h2>Por Qué Elegirnos</h2>
-<div class="why-choose">
-<div><h3>Calidad Garantizada</h3><p>Materiales premium y acabados profesionales.</p></div>
-<div><h3>Entrega a Tiempo</h3><p>Proyectos listos cuando lo necesitas.</p></div>
-<div><h3>Financiamiento</h3><p>Planes de pago accesibles para ti.</p></div>
-</div>
+    <h2>¿Por Qué Pantoja Tile & Remodeling?</h2>
+    <div class="why-choose">
+        <div>
+            <h3>⭐ Calidad Garantizada</h3>
+            <p>Usamos solo materiales premium y técnicas de instalación que aseguran durabilidad.</p>
+        </div>
+        <div>
+            <h3>⏱ Entrega a Tiempo</h3>
+            <p>Cumplimos con los plazos acordados. Tu remodelación, lista cuando la necesitas.</p>
+        </div>
+        <div>
+            <h3>💲 Financiamiento Flexible</h3>
+            <p>Planes de pago accesibles que facilitan tu proyecto de remodelación.</p>
+        </div>
+    </div>
 </section>
 
 <section id="servicios">
-<h2>Servicios</h2>
-<ul class="services-list">
-<li>Tile 24x48</li>
-<li>Remodelación de Cocina</li>
-<li>Remodelación de Baño</li>
-<li>Chimeneas y Muros</li>
-<li>Patios y Exteriores</li>
-<li>Pintura Profesional</li>
-</ul>
+    <h2>Nuestros Servicios Premium</h2>
+    <ul class="services-list">
+        <li>🔹 Instalación profesional de <strong>Tile 24x48</strong> y formatos grandes.</li>
+        <li>🔹 Remodelación completa de <strong>Cocinas Modernas</strong>.</li>
+        <li>🔹 Transformación de <strong>Baños estilo Spa</strong>.</li>
+        <li>🔹 Chimeneas decorativas y muros de acento.</li>
+        <li>🔹 <strong>Patios y Exteriores</strong> estilo desértico.</li>
+        <li>🔹 Servicios integrales de Pintura.</li>
+    </ul>
 </section>
 
 <section id="galeria">
-<h2>Proyectos Antes y Después</h2>
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cocina">
-<img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Baño">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Patio">
-</div>
+    <h2>Proyectos Antes y Después</h2>
+    <p style="text-align: center; margin-bottom: 40px;">Transformaciones que hablan por sí solas.</p>
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cocina">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Baño">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Patio">
+    </div>
+</section>
+
+<section style="background-color: #f0f0f0;">
+    <h2>Lo Que Dicen Nuestros Clientes</h2>
+    <div style="max-width: 800px; margin: auto;">
+        <div class="testimonial-card">
+            <p>"El equipo de Pantoja superó mis expectativas. Mi baño es ahora una obra de arte."</p>
+            <footer>— María L., El Paso</footer>
+        </div>
+    </div>
 </section>
 
 <section id="contacto">
-<h2>Solicita tu Cotización</h2>
-<form action="mailto:info@pantojatile.com" method="POST">
-<input name="nombre" type="text" placeholder="Nombre" required>
-<input name="telefono" type="tel" placeholder="Teléfono" required>
-<select name="proyecto">
-<option>Tile</option>
-<option>Baño</option>
-<option>Cocina</option>
-<option>Otros</option>
-</select>
-<textarea name="mensaje" placeholder="Mensaje" rows="4"></textarea>
-<button type="submit">Enviar</button>
-</form>
+    <h2>Solicita tu Cotización Gratis</h2>
+    <form action="https://formspree.io/f/xovgnnlb" method="POST">
+        <label>Nombre Completo:<input name="nombre" type="text" required></label>
+        <label>Teléfono:<input name="telefono" type="tel" required></label>
+        <label>Tipo de Proyecto:
+          <select name="proyecto">
+            <option>Instalación de Tile</option>
+            <option>Remodelación de Baño</option>
+            <option>Remodelación de Cocina</option>
+            <option>Otros</option>
+          </select>
+        </label>
+        <label>Mensaje:<textarea name="mensaje" rows="5"></textarea></label><br>
+        <button class="btn" type="submit">Enviar Solicitud</button>
+    </form>
 </section>
 
 <footer>
-<p>Llámanos: (915) 309-5581 | info@pantojatile.com</p>
-<p>© 2025 Pantoja Tile & Remodeling</p>
+    <p>Llámanos: (915) 309-5581 | info@pantojatile.com</p>
+    <p>© 2025 Pantoja Tile & Remodeling</p>
 </footer>
 
 <a class="whatsapp-btn" href="https://wa.me/19153095581?text=Hola,%20me%20interesa%20una%20cotizaci%C3%B3n" target="_blank">💬 WhatsApp</a>
-</div>
+
 </body>
 </html>
