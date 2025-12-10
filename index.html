@@ -1,6 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZ0M3R3XJJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KZ0M3R3XJJ');
+
+    /*Pantoja*/
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botón de Emergencia</title>
+
+
+
+    
+</script>
+
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Pantoja Tile & Remodeling | El Paso, TX</title>
@@ -76,6 +97,34 @@
         .whatsapp:hover { transform:scale(1.1);}
         .messenger { bottom:140px; background:#0084FF; color:white;}
         .messenger:hover { transform:scale(1.1); background:#006fe0; }
+
+
+        /*Pantoja*/
+/* Estilo del botón flotante */
+  .boton-emergencia {
+    position: fixed;
+    bottom: 20px; /* distancia desde abajo */
+    right: 20px;  /* distancia desde la derecha */
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: transform 0.2s;
+  }
+
+  .boton-emergencia:hover {
+    transform: scale(1.1);
+  }
+        
 
         /* Bottom actions mobile */
         .bottom-actions { position:fixed; left:0; right:0; bottom:0; background:#071012; padding:8px; display:none; justify-content:space-around; gap:10px; z-index:40; box-shadow:0 -5px 15px rgba(0,0,0,0.5);}
@@ -328,5 +377,13 @@
             setLanguage('es');
         }
     </script>
+
+/*pantoja*/
+    
+<!-- Botón flotante -->
+<a href="tel:+19153095581" class="boton-emergencia" title="Llamar Emergencia">
+  🚨
+</a>
+    
 </body>
 </html>
