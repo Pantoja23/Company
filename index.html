@@ -281,31 +281,39 @@
         <section id="contacto">
             <h2 data-i18n="contacto_titulo">Contáctanos y Cotiza</h2>
             <div class="contact-wrap">
-                <div class="contact-form">
-                    <h3 data-i18n="contacto_form_titulo">Envía un mensaje</h3>
-                    <label data-i18n="form_nombre">Nombre completo</label>
-                    <input type="text">
-                    <label data-i18n="form_telefono">Teléfono</label>
-                    <input type="tel">
-                    <label data-i18n="form_proyecto">Tipo de proyecto</label>
-                    <select>
-                        <option data-i18n="proyecto_tile">Instalación de Tile</option>
-                        <option data-i18n="proyecto_bano">Remodelación de Baño</option>
-                        <option data-i18n="proyecto_cocina">Remodelación de Cocina</option>
-                        <option data-i18n="proyecto_pintura">Pintura Interior/Exterior</option>
-                        <option data-i18n="proyecto_hvac">HVAC Emergencias/Conversiones</option>
-                        <option data-i18n="proyecto_roof">Techos/Mantenimiento</option>
-                        <option data-i18n="proyecto_otros">Otros</option>
-                    </select>
-                    <label data-i18n="form_mensaje">Mensaje</label>
-                    <textarea rows="5"></textarea>
-                    <button class="btn" data-i18n="form_btn">Enviar Solicitud</button>
-                </div>
+                <form id="contactForm" class="contact-form">
+    <h3 id="formTitle">Envía un mensaje</h3>
+
+    <label>Nombre / Name</label>
+    <input type="text" name="name" required>
+
+    <label>Teléfono / Phone</label>
+    <input type="tel" name="phone" required>
+
+    <label>Email / Email</label>
+    <input type="email" name="email" required>
+
+    <label>Tipo de proyecto / Project type</label>
+    <select name="project">
+        <option>Tile Installation</option>
+        <option>Bathroom Remodeling</option>
+        <option>Kitchen Remodeling</option>
+        <option>Interior / Exterior Painting</option>
+        <option>HVAC Emergency</option>
+        <option>Roof / Maintenance</option>
+        <option>Other</option>
+    </select>
+
+    <label>Mensaje / Message</label>
+    <textarea name="message" rows="5" required></textarea>
+
+    <button type="submit" class="btn">Enviar / Send</button>
+</form>
 
                 <div class="contact-info-card">
                     <h3 data-i18n="info_titulo">Información de Contacto</h3>
                     <p><strong data-i18n="info_telefono_label">Teléfono:</strong> (915) 309-5581</p>
-                    <p><strong data-i18n="info_email_label">Email:</strong> Jorge.Pantoja2317@gmail.com</p>
+                    <p><strong data-i18n="info_email_label">Email:</strong> jorge.pantoja2317@gmail.com</p>
                     <p><strong data-i18n="info_ubicacion_label">Ubicación:</strong> El Paso, TX</p>
                     <a href="tel:+19153095581" class="btn" data-i18n="info_btn_llamar">Llamar ahora</a>
                 </div>
@@ -362,7 +370,7 @@
                 proyecto_pintura: "Pintura Interior/Exterior",
                 proyecto_roof: "Techos/Mantenimiento",
                 proyecto_otros: "Otros",
-                form_mensaje: "Mensaje",
+                form_mensaje: "Mensaje y Direccion",
                 form_btn: "Enviar Solicitud",
                 info_titulo: "Información de Contacto",
                 info_telefono_label: "Teléfono:",
@@ -408,7 +416,7 @@
                 proyecto_hvac: "HVAC Emergency/Convertions",
                 proyecto_roof: "Roofing/Manteinance",
                 proyecto_otros: "Other",
-                form_mensaje: "Message",
+                form_mensaje: "Message and Address",
                 form_btn: "Send Request",
                 info_titulo: "Contact Info",
                 info_telefono_label: "Phone:",
@@ -437,5 +445,57 @@
         }
     </script>
 
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+    emailjs.init("K65A25nx8u_SemQmp");
+})();
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const form = this;
+
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const project = form.project.value;
+    const message = form.message.value;
+
+    // MENSAJE WHATSAPP
+    const whatsappMessage =
+`Hola, mi nombre es ${name}.
+Estoy interesado en:
+${project}
+
+Mensaje:
+${message}
+
+Teléfono: ${phone}`;
+
+    const whatsappURL =
+`https://wa.me/19153095581?text=${encodeURIComponent(whatsappMessage)}`;
+
+    // 👉 ABRIR WHATSAPP INMEDIATAMENTE (NO BLOQUEADO)
+    window.open(whatsappURL, "_blank");
+
+    // 👉 LUEGO ENVIAR EMAIL
+    emailjs.sendForm(
+        "service_nldv8hp",
+        "template_92zgc3j",
+        form
+    ).then(function() {
+        alert("Mensaje enviado correctamente. Te contactaremos pronto.");
+        form.reset();
+    }, function(error) {
+        alert("Error al enviar el mensaje.");
+        console.error(error);
+    });
+});
+</script>
+    
 </body>
 </html>
