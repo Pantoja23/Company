@@ -1,6 +1,13 @@
 {
-  "urgency_en": "🔥 HURRY! Only 3 project slots left for January. Book now!",
-  "urgency_es": "🔥 ¡RÁPIDO! Solo quedan 3 cupos para proyectos en Enero.",
-  "descuento": "$300 OFF",
-  "promo_activa": "true"
+  "urgency_en": "🔥 JANUARY SPECIAL: $300 OFF ON ANY FULL REMODELING PROJECT!",
+  "urgency_es": "🔥 ESPECIAL DE ENERO: ¡$300 DE DESCUENTO EN CUALQUIER PROYECTO COMPLETO!",
+  "descuento": "$300",
+  "wa_messages": {
+    "Kitchen Remodeling": "Hi Pantoja Tile! My name is {name}. I'm interested in the {descuento} discount for a Kitchen Remodel 🍳",
+    "Bathroom Remodeling": "Hello! I'm {name}. I saw the {descuento} offer and I want to remodel my Bathroom 🚿",
+    "Tile Installation": "Greetings! My name is {name}. I need an expert for Tile Installation and want to claim the {descuento} 💎",
+    "Professional Painting": "Hi! I am {name}. I'm interested in a professional painting quote with the {descuento} discount 🎨",
+    "Roofing Solutions": "Hello Pantoja Team! I'm {name}. I need a roofing inspection and want to use the {descuento} offer 🏠",
+    "HVAC & Cooling": "Hi! My name is {name}. I'm interested in HVAC services and the {descuento} discount ❄️"
+  }
 }
