@@ -422,7 +422,6 @@ const i18n = {
   }
 };
 
-/* DETECCIÓN Y CAMBIO DE IDIOMA */
 let lang = navigator.language.startsWith('es') ? 'es' : 'en';
 let globalConfig = {};
 
@@ -442,7 +441,6 @@ function applyTranslations(){
   if(document.getElementById('why-list')) document.getElementById('why-list').innerHTML = i18n[lang].why_items.map(i => `<div>${i}</div>`).join('');
 }
 
-/* CONFIG JSON DINÁMICO */
 async function applyConfig(){
   const u = document.getElementById("urgency-text");
   try{
@@ -458,10 +456,8 @@ function updateDynamicContent() {
   const u = document.getElementById("urgency-text");
   const n = document.getElementById("nav-cta");
   const h = document.getElementById("hero-cta");
-
   const offerKey = lang === 'es' ? 'urgency_es' : 'urgency_en';
   if(globalConfig[offerKey]) u.innerText = globalConfig[offerKey];
-
   if(globalConfig.descuento){
     const d = globalConfig.descuento;
     n.innerText = (lang === 'es') ? "Obtén tu " + d : "Claim " + d;
@@ -469,7 +465,6 @@ function updateDynamicContent() {
   }
 }
 
-/* FORMATOS Y STORAGE */
 function formatName(i){i.value=i.value.toLowerCase().replace(/(^\w|\s\w)/g,m=>m.toUpperCase())}
 function formatSentence(i){if(i.value)i.value=i.value[0].toUpperCase()+i.value.slice(1)}
 
@@ -483,27 +478,20 @@ document.getElementById("leads").innerText=localStorage.getItem("leads")||0;
 function openModal(){document.getElementById("modal").style.display="flex"}
 window.onclick=e=>{if(e.target.id==="modal")document.getElementById("modal").style.display="none"}
 
-/* FUNCIÓN DE ANIMACIÓN DE ÉXITO */
 function triggerSuccessEffect() {
   var duration = 4 * 1000;
   var animationEnd = Date.now() + duration;
   var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 3000 };
-
-  function randomInRange(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
+  function randomInRange(min, max) { return Math.random() * (max - min) + min; }
   var interval = setInterval(function() {
     var timeLeft = animationEnd - Date.now();
     if (timeLeft <= 0) return clearInterval(interval);
-
     var particleCount = 50 * (timeLeft / duration);
     confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
     confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
   }, 250);
 }
 
-/* ENVÍO DE LEADS CON ID ÚNICO Y GOOGLE SHEETS */
 async function sendLead(){
   const name = document.getElementById("nameEl").value;
   const phone = document.getElementById("phoneEl").value;
@@ -515,7 +503,6 @@ async function sendLead(){
 
   const now = new Date();
   const projectID = service.substring(0,3).toUpperCase() + "-" + now.getTime();
-  
   const hour = now.getHours();
   const isAfterHours = hour >= 18 || hour < 8; 
   
@@ -535,40 +522,42 @@ async function sendLead(){
   };
 
   const intro = serviceMessages[service] ? serviceMessages[service][lang] : (lang === 'es' ? "su proyecto." : "your project.");
-  
   const professionalMsg = lang === 'es' 
     ? `Gracias por elegir a Pantoja Tile & Remodeling para ${intro} Un miembro de nuestro equipo ha recibido su solicitud con el ID ${projectID} y lo contactará ${timeMsg.es}`
     : `Thank you for choosing Pantoja Tile & Remodeling for ${intro} A member of our team has received your request with ID ${projectID} and will contact you ${timeMsg.en}`;
 
+  // --- VARIABLES PARA EMAILJS ---
   const emailData = {
     project_id: projectID,
     user_name: name,
+    user_phone: phone,
     user_email: email, 
     service: service,
-    professional_msg: professionalMsg,
-    admin_subject: `New Project Alert: ${service} - ${name}`,
-    client_subject: lang === 'es' ? "Confirmación de Solicitud - Pantoja Tile" : "Project Request Confirmation - Pantoja Tile"
+    message: msg,
+    discount: globalConfig.descuento || "No Discount",
+    professional_msg: professionalMsg
   };
 
-  // Disparar animación de sorpresa
   triggerSuccessEffect();
 
+  // ENVÍO A GOOGLE SHEETS
   fetch("https://script.google.com/macros/s/AKfycbzx7TVwzBGxfKkvD_eFSv8WcGJrMGyl9-aeAaqfJV4HyxNZGdYyEUQDV2P8g2HO9vjqig/exec", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify({ 
       id: projectID, 
       date: now.toLocaleString(), 
-      name, 
-      phone, 
-      email, 
-      service, 
+      name: name, 
+      phone: phone, 
+      email: email, 
+      service: service, 
       message: msg, 
       status: "New",
-      discount: globalConfig.descuento || "No Discount" 
+      discount: emailData.discount 
     })
   });
 
+  // ENVÍO A EMAILJS
   emailjs.send("service_nldv8hp", "template_92zgc3j", emailData);
 
   setTimeout(() => {
@@ -584,7 +573,6 @@ async function sendLead(){
   }, 1000);
 }
 
-// INICIALIZACIÓN
 applyTranslations();
 applyConfig();
 </script>
