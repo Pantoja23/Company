@@ -104,7 +104,15 @@ header{
 nav{display:flex;align-items:center;gap:15px}
 nav a{color:#e5e7eb;text-decoration:none;font-weight:700;font-size:14px; transition: 0.3s;}
 nav a:hover{color: var(--green);}
-nav button{
+
+/* BOTÓN LENGUAJE */
+.lang-btn {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; padding: 8px 15px; border-radius: 10px; cursor: pointer;
+  font-weight: 800; font-size: 13px; transition: 0.3s;
+}
+
+nav button#nav-cta {
  background:var(--green);border:none;
  padding:12px 25px;border-radius:40px;
  font-weight:900;cursor:pointer;
@@ -262,7 +270,6 @@ section h2{font-size:clamp(32px, 5vw, 48px);margin-bottom:40px; font-weight: 900
 
 footer{text-align:center;padding:60px;opacity:.4; font-size: 14px;}
 
-/* RESPONSIVE MOBILE */
 @media (max-width:768px){
  header{padding: 15px 4%;}
  nav a{display: none;}
@@ -290,10 +297,10 @@ footer{text-align:center;padding:60px;opacity:.4; font-size: 14px;}
   <span>Pantoja Tile & Remodeling</span>
  </div>
  <nav>
-  <a href="#services">Services / Servicios</a>
-  <a href="#about">About / Nosotros</a>
-  <a href="#dashboard">Live</a>
-  <button id="nav-cta" onclick="openModal()">Get Quote / Presupuesto</button>
+  <a href="#services" data-t="nav_services">Services / Servicios</a>
+  <a href="#about" data-t="nav_about">About / Nosotros</a>
+  <button class="lang-btn" onclick="toggleLang()" id="langSwitcher">ES</button>
+  <button id="nav-cta" onclick="openModal()" data-t="btn_quote">Get Quote / Presupuesto</button>
  </nav>
 </header>
 
@@ -303,9 +310,9 @@ footer{text-align:center;padding:60px;opacity:.4; font-size: 14px;}
   </video>
   
   <div class="hero-content">
-    <h1>Premium Residential & Commercial Remodeling</h1>
-    <p>17+ Years of excellence in El Paso, TX. Turn your vision into high-end reality with expert craftsmanship.</p>
-    <button id="hero-cta" onclick="openModal()">Get Free Estimate</button>
+    <h1 data-t="hero_title">Premium Residential & Commercial Remodeling</h1>
+    <p data-t="hero_desc">17+ Years of excellence in El Paso, TX. Turn your vision into high-end reality with expert craftsmanship.</p>
+    <button id="hero-cta" onclick="openModal()" data-t="hero_btn">Get Free Estimate</button>
   </div>
 </section>
 
@@ -317,28 +324,28 @@ footer{text-align:center;padding:60px;opacity:.4; font-size: 14px;}
 </div>
 
 <section id="services">
- <h2>Specialized Services / Nuestros Servicios</h2>
+ <h2 data-t="title_services">Specialized Services / Nuestros Servicios</h2>
  <div class="services">
-  <div class="service"><img src="img/kitchen.jpg" alt="Kitchen Remodeling El Paso"><div class="service-txt"><h3>Kitchen Remodeling</h3><p>Cocinas de Lujo</p></div></div>
-  <div class="service"><img src="img/bathroom.jpg" alt="Bathroom Remodeling El Paso"><div class="service-txt"><h3>Bathroom Remodeling</h3><p>Baños Modernos</p></div></div>
-  <div class="service"><img src="img/tile.jpg" alt="Tile Installation El Paso"><div class="service-txt"><h3>Tile Installation</h3><p>Instalación de Azulejo</p></div></div>
-  <div class="service"><img src="img/paint.jpg" alt="Painting Services TX"><div class="service-txt"><h3>Professional Painting</h3><p>Pintura Profesional</p></div></div>
-  <div class="service"><img src="img/roofing.jpg" alt="Roofing Solutions"><div class="service-txt"><h3>Roofing Solutions</h3><p>Techos y Roofing</p></div></div>
-  <div class="service"><img src="img/hvac.jpg" alt="HVAC Repair El Paso"><div class="service-txt"><h3>HVAC & Cooling</h3><p>Aire Acondicionado</p></div></div>
+  <div class="service"><img src="img/kitchen.jpg" alt="Kitchen Remodeling El Paso"><div class="service-txt"><h3 data-t="s1">Kitchen Remodeling</h3><p>Cocinas de Lujo</p></div></div>
+  <div class="service"><img src="img/bathroom.jpg" alt="Bathroom Remodeling El Paso"><div class="service-txt"><h3 data-t="s2">Bathroom Remodeling</h3><p>Baños Modernos</p></div></div>
+  <div class="service"><img src="img/tile.jpg" alt="Tile Installation El Paso"><div class="service-txt"><h3 data-t="s3">Tile Installation</h3><p>Instalación de Azulejo</p></div></div>
+  <div class="service"><img src="img/paint.jpg" alt="Painting Services TX"><div class="service-txt"><h3 data-t="s4">Professional Painting</h3><p>Pintura Profesional</p></div></div>
+  <div class="service"><img src="img/roofing.jpg" alt="Roofing Solutions"><div class="service-txt"><h3 data-t="s5">Roofing Solutions</h3><p>Techos y Roofing</p></div></div>
+  <div class="service"><img src="img/hvac.jpg" alt="HVAC Repair El Paso"><div class="service-txt"><h3 data-t="s6">HVAC & Cooling</h3><p>Aire Acondicionado</p></div></div>
  </div>
 </section>
 
 <section id="about">
- <h2>Our Story / Nuestra Historia</h2>
- <div class="about-box">
+ <h2 data-t="title_about">Our Story / Nuestra Historia</h2>
+ <div class="about-box" id="about-text">
   Pantoja Tile & Remodeling is El Paso's choice for premium renovations. For over 17 years, we have delivered quality residential and commercial improvements with a commitment to integrity and superior results.<br><br>
   <i>Líderes en remodelación en El Paso por más de 17 años. Calidad, integridad y resultados superiores en cada proyecto.</i>
  </div>
 </section>
 
 <section id="why">
- <h2>Why Choose Us / Por qué elegirnos</h2>
- <div class="why">
+ <h2 data-t="title_why">Why Choose Us / Por qué elegirnos</h2>
+ <div class="why" id="why-list">
   <div>✔ Commercial & Residential Experts / Expertos Comerciales y Residenciales</div>
   <div>✔ Licensed, Insured & Safety-focused / Asegurados y con Licencia</div>
   <div>✔ Transparent Bidding & Clear Timelines / Presupuestos Claros y Honestos</div>
@@ -347,19 +354,19 @@ footer{text-align:center;padding:60px;opacity:.4; font-size: 14px;}
 </section>
 
 <section id="dashboard">
- <h2>Live Performance / Rendimiento en Vivo</h2>
+ <h2 data-t="title_live">Live Performance / Rendimiento en Vivo</h2>
  <div class="dashboard">
-  <div class="card"><h3>Total Visits</h3><span id="visits">0</span></div>
-  <div class="card"><h3>Active Leads</h3><span id="leads">0</span></div>
+  <div class="card"><h3 data-t="visits_label">Total Visits</h3><span id="visits">0</span></div>
+  <div class="card"><h3 data-t="leads_label">Active Leads</h3><span id="leads">0</span></div>
  </div>
 </section>
 
 <section id="contact">
  <div class="contact">
-  <h2>Ready to Start? / ¿Listo para empezar?</h2>
+  <h2 data-t="contact_title">Ready to Start? / ¿Listo para empezar?</h2>
   <p><i class="fas fa-phone-alt" style="color:var(--green)"></i> (915) 309-5581</p>
   <p><i class="fas fa-map-marker-alt" style="color:var(--red)"></i> El Paso, TX & Surrounding Areas</p>
-  <button onclick="openModal()" style="background:var(--green); border:none; padding:15px 30px; border-radius:30px; color:#fff; font-weight:900; cursor:pointer; margin-top:20px;">Email Us / Enviar Correo</button>
+  <button onclick="openModal()" style="background:var(--green); border:none; padding:15px 30px; border-radius:30px; color:#fff; font-weight:900; cursor:pointer; margin-top:20px;" data-t="contact_btn">Email Us / Enviar Correo</button>
  </div>
 </section>
 
@@ -373,48 +380,98 @@ footer{text-align:center;padding:60px;opacity:.4; font-size: 14px;}
 
 <div class="modal" id="modal">
  <div class="modal-content">
-  <h3>Free Estimate / Presupuesto Gratis</h3>
+  <h3 data-t="modal_title">Free Estimate / Presupuesto Gratis</h3>
   <input id="nameEl" placeholder="Full Name / Nombre Completo" oninput="formatName(this)">
   <input id="phoneEl" placeholder="Phone Number / Teléfono">
   <input id="emailEl" placeholder="Email Address / Correo">
   <select id="serviceEl">
-   <option>Commercial Remodeling</option>
-   <option>Kitchen Remodeling</option>
-   <option>Bathroom Remodeling</option>
-   <option>Tile Installation</option>
-   <option>Professional Painting</option>
-   <option>Roofing Solutions</option>
-   <option>HVAC & Cooling</option>
+   <option value="Commercial Remodeling">Commercial Remodeling</option>
+   <option value="Kitchen Remodeling">Kitchen Remodeling</option>
+   <option value="Bathroom Remodeling">Bathroom Remodeling</option>
+   <option value="Tile Installation">Tile Installation</option>
+   <option value="Professional Painting">Professional Painting</option>
+   <option value="Roofing Solutions">Roofing Solutions</option>
+   <option value="HVAC & Cooling">HVAC & Cooling</option>
   </select>
   <textarea id="msgEl" placeholder="Tell us about your project / Cuéntanos tu idea..." oninput="formatSentence(this)"></textarea>
-  <button onclick="sendLead()">Submit Request / Enviar Solicitud</button>
+  <button onclick="sendLead()" data-t="modal_btn">Submit Request / Enviar Solicitud</button>
  </div>
 </div>
 
 <script>
-/* CONFIG JSON */
-async function applyConfig(){
- const u=document.getElementById("urgency-text");
- const n=document.getElementById("nav-cta");
- const h=document.getElementById("hero-cta");
- try{
-  const r=await fetch("img/config.json?nocache="+Date.now());
-  if(r.ok){
-   const d=await r.json();
-   if(d.urgency_en) u.innerText=d.urgency_en;
-   if(d.descuento){
-    n.innerText="Claim "+d.descuento;
-    h.innerText="Get "+d.descuento+" Off";
-   }
+/* DICCIONARIO DE IDIOMAS */
+const i18n = {
+  es: {
+    nav_services: "Servicios", nav_about: "Nosotros", btn_quote: "Presupuesto",
+    hero_title: "Remodelación Premium Residencial y Comercial", hero_desc: "Más de 17 años de excelencia en El Paso, TX. Calidad experta.", hero_btn: "Presupuesto Gratis",
+    title_services: "Servicios Especializados", s1: "Remodelación de Cocinas", s2: "Remodelación de Baños", s3: "Instalación de Azulejo", s4: "Pintura Profesional", s5: "Soluciones de Techos", s6: "HVAC y Aire",
+    title_about: "Nuestra Historia", about_txt: "Pantoja Tile & Remodeling es la opción preferida en El Paso para renovaciones premium. Por más de 17 años, hemos entregado calidad con integridad.",
+    title_why: "Por qué elegirnos", why_items: ["✔ Expertos Comerciales y Residenciales", "✔ Asegurados y con Licencia", "✔ Presupuestos Claros y Honestos", "✔ Confianza Local"],
+    title_live: "Rendimiento en Vivo", visits_label: "Visitas Totales", leads_label: "Prospectos Activos",
+    contact_title: "¿Listo para empezar?", contact_btn: "Enviar Correo", modal_title: "Presupuesto Gratis", modal_btn: "Enviar Solicitud"
+  },
+  en: {
+    nav_services: "Services", nav_about: "About", btn_quote: "Get Quote",
+    hero_title: "Premium Residential & Commercial Remodeling", hero_desc: "17+ Years of excellence in El Paso, TX. Turn your vision into reality.", hero_btn: "Get Free Estimate",
+    title_services: "Specialized Services", s1: "Kitchen Remodeling", s2: "Bathroom Remodeling", s3: "Tile Installation", s4: "Professional Painting", s5: "Roofing Solutions", s6: "HVAC & Cooling",
+    title_about: "Our Story", about_txt: "Pantoja Tile & Remodeling is El Paso's choice for premium renovations. For over 17 years, we have delivered quality residential and commercial improvements.",
+    title_why: "Why Choose Us", why_items: ["✔ Commercial & Residential Experts", "✔ Licensed, Insured & Safety-focused", "✔ Transparent Bidding & Timelines", "✔ Trusted by the Community"],
+    title_live: "Live Performance", visits_label: "Total Visits", leads_label: "Active Leads",
+    contact_title: "Ready to Start?", contact_btn: "Email Us", modal_title: "Free Estimate", modal_btn: "Submit Request"
   }
- }catch{ u.innerText="🔥 Special Limited Time Offer Available Now!"; }
-}
-applyConfig();
+};
 
+/* DETECCIÓN Y CAMBIO DE IDIOMA */
+let lang = navigator.language.startsWith('es') ? 'es' : 'en';
+let globalConfig = {};
+
+function toggleLang() {
+  lang = (lang === 'es') ? 'en' : 'es';
+  document.getElementById('langSwitcher').innerText = (lang === 'es') ? 'EN' : 'ES';
+  applyTranslations();
+  updateDynamicContent();
+}
+
+function applyTranslations(){
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if(i18n[lang][key]) el.innerText = i18n[lang][key];
+  });
+  if(document.getElementById('about-text')) document.getElementById('about-text').innerHTML = i18n[lang].about_txt;
+  if(document.getElementById('why-list')) document.getElementById('why-list').innerHTML = i18n[lang].why_items.map(i => `<div>${i}</div>`).join('');
+}
+
+/* CONFIG JSON DINÁMICO */
+async function applyConfig(){
+  const u = document.getElementById("urgency-text");
+  try{
+    const r = await fetch("img/config.json?nocache="+Date.now());
+    if(r.ok){
+      globalConfig = await r.json();
+      updateDynamicContent();
+    }
+  }catch{ u.innerText="🔥 Special Limited Time Offer Available Now!"; }
+}
+
+function updateDynamicContent() {
+  const u = document.getElementById("urgency-text");
+  const n = document.getElementById("nav-cta");
+  const h = document.getElementById("hero-cta");
+
+  const offerKey = lang === 'es' ? 'urgency_es' : 'urgency_en';
+  if(globalConfig[offerKey]) u.innerText = globalConfig[offerKey];
+
+  if(globalConfig.descuento){
+    const d = globalConfig.descuento;
+    n.innerText = (lang === 'es') ? "Obtén tu " + d : "Claim " + d;
+    h.innerText = (lang === 'es') ? "Obtén tu " + d + " de Desc." : "Get " + d + " Off";
+  }
+}
+
+/* FORMATOS Y STORAGE */
 function formatName(i){i.value=i.value.toLowerCase().replace(/(^\w|\s\w)/g,m=>m.toUpperCase())}
 function formatSentence(i){if(i.value)i.value=i.value[0].toUpperCase()+i.value.slice(1)}
 
-/* EMAIL JS & STORAGE */
 (function(){emailjs.init("K65A25nx8u_SemQmp")})();
 
 let visits=localStorage.getItem("visits")||0;
@@ -425,28 +482,90 @@ document.getElementById("leads").innerText=localStorage.getItem("leads")||0;
 function openModal(){document.getElementById("modal").style.display="flex"}
 window.onclick=e=>{if(e.target.id==="modal")document.getElementById("modal").style.display="none"}
 
-function sendLead(){
- const name=document.getElementById("nameEl").value;
- const phone=document.getElementById("phoneEl").value;
- const email=document.getElementById("emailEl").value;
- const service=document.getElementById("serviceEl").value;
- const msg=document.getElementById("msgEl").value;
+/* ENVÍO DE LEADS CON ID ÚNICO Y GOOGLE SHEETS */
+async function sendLead(){
+  const name = document.getElementById("nameEl").value;
+  const phone = document.getElementById("phoneEl").value;
+  const email = document.getElementById("emailEl").value;
+  const service = document.getElementById("serviceEl").value;
+  const msg = document.getElementById("msgEl").value;
 
- if(!name||!phone)return alert("Please enter Name and Phone");
+  if(!name || !phone) return alert(lang === 'es' ? "Por favor ingrese Nombre y Teléfono" : "Please enter Name and Phone");
 
- fetch("https://script.google.com/macros/s/AKfycbzUbI547Hqyzv2pFzOhB89bqqXh-tQFOroLI3dIrkK8qWzAGOD3CW9YQOafh0jVNqpTcQ/exec",
- {method:"POST",mode:"no-cors",body:JSON.stringify({name,phone,email,service,message:msg,source:"Website-v2",status:"New"})});
- 
- emailjs.send("service_nldv8hp","template_92zgc3j",{name,phone,email,service,message:msg});
+  const now = new Date();
+  const projectID = service.substring(0,3).toUpperCase() + "-" + now.getTime();
+  
+  // --- LÓGICA DE HORARIO ---
+  const hour = now.getHours();
+  const isAfterHours = hour >= 18 || hour < 8; // Después de las 6pm o antes de las 8am
+  
+  const timeMsg = {
+    es: isAfterHours ? "mañana a primera hora a partir de las 8:00 AM." : "a la brevedad posible.",
+    en: isAfterHours ? "first thing tomorrow morning starting at 8:00 AM." : "as soon as possible."
+  };
 
- let l=parseInt(localStorage.getItem("leads")||0)+1;
- localStorage.setItem("leads",l);
- document.getElementById("leads").innerText=l;
+  const serviceMessages = {
+    "Kitchen Remodeling": { es: "un diseño de cocina excepcional.", en: "an exceptional kitchen design." },
+    "Bathroom Remodeling": { es: "una transformación moderna de su baño.", en: "a modern transformation for your bathroom." },
+    "Tile Installation": { es: "una instalación de azulejo con acabados de lujo.", en: "a luxury tile installation." },
+    "Professional Painting": { es: "una renovación profesional de pintura.", en: "a professional painting renovation." },
+    "Roofing Solutions": { es: "una solución duradera para su techo.", en: "a durable roofing solution." },
+    "HVAC & Cooling": { es: "el mejor confort climático para su hogar.", en: "the best climate comfort for your home." },
+    "Commercial Remodeling": { es: "una modernización comercial de alto nivel.", en: "high-level commercial modernization." }
+  };
 
- alert("Success! Opening WhatsApp for instant contact...");
- window.open(`https://wa.me/19153095581?text=${encodeURIComponent("*New Website Lead*\nName: "+name+"\nService: "+service+"\nDetails: "+msg)}`);
- document.getElementById("modal").style.display="none";
+  const intro = serviceMessages[service] ? serviceMessages[service][lang] : (lang === 'es' ? "su proyecto." : "your project.");
+  
+  // REDACCIÓN PROFESIONAL
+  const professionalMsg = lang === 'es' 
+    ? `Gracias por elegir a Pantoja Tile & Remodeling para ${intro} Un miembro de nuestro equipo ha recibido su solicitud con el ID ${projectID} y lo contactará ${timeMsg.es}`
+    : `Thank you for choosing Pantoja Tile & Remodeling for ${intro} A member of our team has received your request with ID ${projectID} and will contact you ${timeMsg.en}`;
+
+  const emailData = {
+    project_id: projectID,
+    user_name: name,
+    user_email: email, // El correo del cliente para que EmailJS le responda
+    service: service,
+    professional_msg: professionalMsg,
+    admin_subject: `New Project Alert: ${service} - ${name}`,
+    client_subject: lang === 'es' ? "Confirmación de Solicitud - Pantoja Tile" : "Project Request Confirmation - Pantoja Tile"
+  };
+
+  // 1. ENVÍO A GOOGLE SHEETS
+  fetch("https://script.google.com/macros/s/AKfycbwKG80lE5AEjel6QGWG_vpatlLzE1I7oDJkVSwjnCC4OQJ4qJa_1OOVkI-pGck3fdF5Jw/exec", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({ id: projectID, date: now.toLocaleString(), name, phone, email, service, message: msg, status: "New" })
+  });
+
+  // 2. ENVÍO A EMAILJS (Admin y Cliente)
+  // Asegúrate de enviar el correo del cliente en 'user_email'
+  emailjs.send("service_nldv8hp", "template_92zgc3j", emailData);
+
+  // 3. WHATSAPP Y ALERTA
+  window.open(`https://wa.me/19153095581?text=${encodeURIComponent(professionalMsg)}`);
+  alert(professionalMsg);
+    // ... (debajo del alert y el window.open) ...
 }
+  // 4. LIMPIAR TODOS LOS CAMPOS DEL FORMULARIO
+  document.getElementById("nameEl").value = "";
+  document.getElementById("phoneEl").value = "";
+  document.getElementById("emailEl").value = "";
+  document.getElementById("msgEl").value = "";
+  // El select de servicio lo puedes regresar al primero por defecto
+  document.getElementById("serviceEl").selectedIndex = 0;
+
+  // Si usas un <form> con id "contactForm", es más rápido así:
+  // document.getElementById("contactForm").reset();
+
+  // Cerrar el modal (si no se cerró antes)
+  document.getElementById("modal").style.display = "none";
+}
+
+
+// INICIALIZACIÓN
+applyTranslations();
+applyConfig();
 </script>
 </body>
 </html>
