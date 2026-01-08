@@ -506,11 +506,7 @@ async function sendLead(){
   const hour = now.getHours();
   const isAfterHours = hour >= 18 || hour < 8; 
   
-  const timeMsg = {
-    es: isAfterHours ? "mañana a primera hora a partir de las 8:00 AM." : "a la brevedad posible.",
-    en: isAfterHours ? "first thing tomorrow morning starting at 8:00 AM." : "as soon as possible."
-  };
-
+  // Diccionario de servicios (Mantenido para el mensaje profesional)
   const serviceMessages = {
     "Kitchen Remodeling": { es: "un diseño de cocina excepcional.", en: "an exceptional kitchen design." },
     "Bathroom Remodeling": { es: "una transformación moderna de su baño.", en: "a modern transformation for your bathroom." },
@@ -522,11 +518,22 @@ async function sendLead(){
   };
 
   const intro = serviceMessages[service] ? serviceMessages[service][lang] : (lang === 'es' ? "su proyecto." : "your project.");
+  
+  // Lo que el cliente lee en el navegador
   const professionalMsg = lang === 'es' 
-    ? `Gracias por elegir a Pantoja Tile & Remodeling para ${intro} Un miembro de nuestro equipo ha recibido su solicitud con el ID ${projectID} y lo contactará ${timeMsg.es}`
-    : `Thank you for choosing Pantoja Tile & Remodeling for ${intro} A member of our team has received your request with ID ${projectID} and will contact you ${timeMsg.en}`;
+    ? `Gracias por elegir a Pantoja Tile & Remodeling para ${intro} Su solicitud con ID ${projectID} ha sido recibida.`
+    : `Thank you for choosing Pantoja Tile & Remodeling for ${intro} Your request with ID ${projectID} has been received.`;
 
-  // --- VARIABLES PARA EMAILJS ---
+  // --- LO QUE TE LLEGA A TU WHATSAPP (9153095581) ---
+  const waMsg = `*NUEVO LEAD DESDE LA WEB* 🚀\n\n` +
+                `*Cliente:* ${name}\n` +
+                `*Teléfono:* ${phone}\n` +
+                `*Email:* ${email}\n` +
+                `*Servicio:* ${service}\n` +
+                `*ID Proyecto:* ${projectID}\n` +
+                `*Mensaje:* ${msg}\n\n` +
+                `_Enviado desde: https://pantoja23.github.io/Company/_`;
+
   const emailData = {
     project_id: projectID,
     user_name: name,
@@ -540,8 +547,13 @@ async function sendLead(){
 
   triggerSuccessEffect();
 
+  // Actualizar dashboard visual
+  let currentLeads = parseInt(localStorage.getItem("leads") || 0);
+  localStorage.setItem("leads", currentLeads + 1);
+  document.getElementById("leads").innerText = currentLeads + 1;
+
   // ENVÍO A GOOGLE SHEETS
-  fetch("https://script.google.com/macros/s/AKfycbzx7TVwzBGxfKkvD_eFSv8WcGJrMGyl9-aeAaqfJV4HyxNZGdYyEUQDV2P8g2HO9vjqig/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzJqv32Fh0nQFevBPUsYAdzMSYDern9TTzBz0fieLbw7WzUW4S_Db15e2du2fV0ajSh/exec", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify({ 
@@ -561,9 +573,11 @@ async function sendLead(){
   emailjs.send("service_nldv8hp", "template_92zgc3j", emailData);
 
   setTimeout(() => {
-    window.open(`https://wa.me/19153095581?text=${encodeURIComponent(professionalMsg)}`);
+    // Abrir WhatsApp con TU número y los datos del cliente
+    window.open(`https://wa.me/19153095581?text=${encodeURIComponent(waMsg)}`);
     alert(professionalMsg);
 
+    // Limpiar campos
     document.getElementById("nameEl").value = "";
     document.getElementById("phoneEl").value = "";
     document.getElementById("emailEl").value = "";
